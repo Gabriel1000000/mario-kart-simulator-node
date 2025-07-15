@@ -73,8 +73,30 @@ async function playRaCeEngine(character1,character2){
 
         if(block === "CONFRONTO"){
             let powerTest1=diceResult1+character1.PODER;
-            let powerTest2=diceResult2+character2.PODER;   
-            
+            let powerTest2=diceResult2+character2.PODER; 
+            console.log(`🥋 &{character1.NOME}🥊 conforntou ${character2.NOME}🥊`)  
+            await logRollResult(character1.NOME, "PODER", diceResult1, character1.PODER);
+            await logRollResult(character2.NOME, "PODER", diceResult2, character2.PODER);
+
+            character2.PONTOS-= powerTest1>powerTest2 && character2.PONTOS >0 ? 1 : 0;
+            character1.PONTOS-= powerTest2>powerTest1 && character1.PONTOS >0 ? 1 : 0;
+            console.log(powerTest2 === powerTest1 ?"Confronto empatado! Nenhum ponto foi perdido!" : "")
+            /* 
+            if(powerTest1>powerTest2){
+                if(character2.PONTOS >0){
+                    character2.PONTOS--;
+                }
+            }
+            if(powerTest2>powerTest1){
+                if(character1.PONTOS >0){
+                    character1.PONTOS--;
+                }
+            }
+            if(powerTest2 === powerTest1){
+                console.log("Confronto empatado! Nenhum ponto foi perdido!")
+            }
+            */
+
         }
 
         if(totalTestSkill1>totalTestSkill2){
