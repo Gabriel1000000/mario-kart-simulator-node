@@ -74,28 +74,19 @@ async function playRaCeEngine(character1,character2){
         if(block === "CONFRONTO"){
             let powerTest1=diceResult1+character1.PODER;
             let powerTest2=diceResult2+character2.PODER; 
-            console.log(`🥋 &{character1.NOME}🥊 conforntou ${character2.NOME}🥊`)  
+            console.log(`🥋 ${character1.NOME}🥊 VS ${character2.NOME}🥊`)  
             await logRollResult(character1.NOME, "PODER", diceResult1, character1.PODER);
             await logRollResult(character2.NOME, "PODER", diceResult2, character2.PODER);
 
-            character2.PONTOS-= powerTest1>powerTest2 && character2.PONTOS >0 ? 1 : 0;
-            character1.PONTOS-= powerTest2>powerTest1 && character1.PONTOS >0 ? 1 : 0;
+            if(powerTest1>powerTest2 && character2.PONTOS > 0) {
+                character2.PONTOS--;
+                console.log(`O ${character1.NOME} venceu o confornto, o ${character2.NOME} perdeu 1 ponto!🐢`);
+            }
+            if (powerTest2>powerTest1 && character1.PONTOS > 0) {
+                character1.PONTOS--;    
+                console.log(`O ${character2.NOME} venceu o confornto, o ${character1.NOME} perdeu 1 ponto!🐢`);
+            } 
             console.log(powerTest2 === powerTest1 ?"Confronto empatado! Nenhum ponto foi perdido!" : "")
-            /* 
-            if(powerTest1>powerTest2){
-                if(character2.PONTOS >0){
-                    character2.PONTOS--;
-                }
-            }
-            if(powerTest2>powerTest1){
-                if(character1.PONTOS >0){
-                    character1.PONTOS--;
-                }
-            }
-            if(powerTest2 === powerTest1){
-                console.log("Confronto empatado! Nenhum ponto foi perdido!")
-            }
-            */
 
         }
 
@@ -110,6 +101,21 @@ async function playRaCeEngine(character1,character2){
     }
 }
 
+async function declereWinner(character1, character2) {
+    console.log("Resultado da corrida:");
+    console.log(`${character1.NOME}:${character1.PONTOS} ponto(s)`);
+    console.log(`${character2.NOME}:${character2.PONTOS} ponto(s)`);
+    if (character1.PONTOS>character2.PONTOS) {
+        console.log(`${character1.NOME} venceu a corrida! Parabéns!🏆`);
+    } if(character2.PONTOS>character1.PONTOS){
+        console.log(`${character2.NOME} venceu a corrida! Parabéns!🏆`);
+    }
+    else {
+        console.log("A corrida terminou empatada!");
+    }
+    
+}
+
 (async function main(){
     
     console.log(
@@ -117,5 +123,6 @@ async function playRaCeEngine(character1,character2){
     )
     // o await é um metodo que faz com que o copilador espere a playRaCeEngine(player1, player2); ser executada.
     await playRaCeEngine(player1, player2);
+    await declereWinner(player1, player2);
     
 })();
