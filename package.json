@@ -1,0 +1,12 @@
+{
+  "name": "mario-kart-simulator-node",
+  "version": "1.0.0",
+  "description": "Simulador de Corridas inspirado no universo Mario Kart, desenvolvido com Node.js. O objetivo é criar uma simulação divertida e interativa em linha de comando (CLI), onde personagens disputam posições com base em sorte e desempenho. Ideal para praticar lógica de programação, estruturas de dados e manipulação de tempo com JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Gabriel Alves Varella da Costa",
+  "license": "ISC"
+}
