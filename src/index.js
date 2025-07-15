@@ -101,13 +101,13 @@ async function playRaCeEngine(character1,character2){
     }
 }
 
-async function declereWinner(character1, character2) {
+async function declareWinner(character1, character2) {
     console.log("Resultado da corrida:");
     console.log(`${character1.NOME}:${character1.PONTOS} ponto(s)`);
     console.log(`${character2.NOME}:${character2.PONTOS} ponto(s)`);
     if (character1.PONTOS>character2.PONTOS) {
         console.log(`${character1.NOME} venceu a corrida! Parabéns!🏆`);
-    } if(character2.PONTOS>character1.PONTOS){
+    } else if(character2.PONTOS>character1.PONTOS){
         console.log(`${character2.NOME} venceu a corrida! Parabéns!🏆`);
     }
     else {
@@ -123,6 +123,6 @@ async function declereWinner(character1, character2) {
     )
     // o await é um metodo que faz com que o copilador espere a playRaCeEngine(player1, player2); ser executada.
     await playRaCeEngine(player1, player2);
-    await declereWinner(player1, player2);
+    await declareWinner(player1, player2);
     
 })();
